@@ -34,7 +34,7 @@ export default Nav;
 const NavWrapper = styled.nav`
   position: fixed;
   top: 0;
-  leif: 0;
+  left: 0;
   right: 0;
   height: 70px;
   background-color: ${(props) => (props.show ? "#090b13" : "transparent")};
