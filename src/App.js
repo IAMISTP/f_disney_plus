@@ -2,12 +2,14 @@ import "./App.css";
 import { styled } from "styled-components";
 import Nav from "./components/Nav";
 import Banner from "./components/Banner";
+import Categroy from "./components/Categroy";
 
 function App() {
   return (
     <Container className="App">
       <Nav />
       <Banner />
+      <Categroy />
     </Container>
   );
 }
