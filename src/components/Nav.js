@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 function Nav() {
   const [show, setShow] = useState(false);
@@ -17,7 +17,7 @@ function Nav() {
     };
   }, []);
   return (
-    <NavWrapper show={show}>
+    <NavWrapper $show={show}>
       <Logo>
         <img
           src="/images/logo.svg"

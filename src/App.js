@@ -1,12 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { styled } from "styled-components";
 import Nav from "./components/Nav";
+import Banner from "./components/Banner";
 
 function App() {
   return (
     <Container className="App">
       <Nav />
+      <Banner />
     </Container>
   );
 }
