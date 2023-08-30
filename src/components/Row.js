@@ -37,6 +37,24 @@ const Row = ({ title, id, fetchUrl }) => {
         loop={true} //loop 기능을 사용할것인 유무
         navigation //arrow 버튼 사용유무
         pagination={{ clickable: true }} //페이지 버튼보이게 할지
+        breakpoints={{
+          1378: {
+            slidesPerView: 6, //한번에 보이는 슬라이드개수
+            slidesPerGroup: 6, //
+          },
+          998: {
+            slidesPerView: 5, //한번에 보이는 슬라이드개수
+            slidesPerGroup: 5, //
+          },
+          625: {
+            slidesPerView: 4, //한번에 보이는 슬라이드개수
+            slidesPerGroup: 4, //
+          },
+          0: {
+            slidesPerView: 3, //한번에 보이는 슬라이드개수
+            slidesPerGroup: 3, //
+          },
+        }}
       >
         <Content id={id}>
           {movies.map((movie) => (
@@ -44,7 +62,6 @@ const Row = ({ title, id, fetchUrl }) => {
               <Wrap>
                 <img
                   key={movie.id}
-                  className="row__poster"
                   src={`http://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                   alt={movie.name}
                   onClick={() => handleClick(movie)}
@@ -67,4 +84,34 @@ const Container = styled.div`
   padding: 0 0 26px;
 `;
 const Content = styled.div``;
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  width: 95%;
+  height: 95%;
+  padding-top: 56.25%;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 /69%) 0px 26px 30px -10px,
+              rgb(0 0 0 /73%) 0px 16px 10px -10px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all 250ms cubic-bezier(.25, .46, .45, .94)0s
+  border: 3px solid rgba(249,249,249,.1);
+
+  img{
+    inset: 0px;
+    display:block;
+    height:100%;
+    object-fit:cover;
+    opacity: 1;
+    position: absolute;
+    width: 100%;
+    transition : opacity 500ms ease-in-out;
+    z-index: 1;
+  }
+  &:hover{
+    box-shadow: rgb(0 0 0 /80%) 0px 40px 58px -16px,
+                rgb(0 0 0 /72%) 0px 30px 22px -10px;
+    transform: scale(0.98);
+    border-color:rgba(249,249,249,.8);  
+  }
+`;

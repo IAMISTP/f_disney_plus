@@ -91,3 +91,25 @@
     max-height: 280px;
   }
 }
+/* 스타일 오버라이드 */
+.swiper-pagenation {
+  text-align: right !important;
+}
+.swiper-pagenation-bullet {
+  background: gray !important;
+  opacity: 1 !important;
+}
+.swiper-pagenation-bullet-active {
+  background-color: white !important;
+}
+.swiper-button-prev {
+  color: white !important;
+}
+.swiper-button-next {
+  color: white !important;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+}
