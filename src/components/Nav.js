@@ -14,6 +14,7 @@ function Nav() {
   const [searchValue, setSearchValue] = useState("");
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
+  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,7 +50,9 @@ function Nav() {
 
   const handleAuth = () => {
     signInWithPopup(auth, provider)
-      .then((result) => {})
+      .then((result) => {
+        setUserData(result.user);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -66,19 +69,33 @@ function Nav() {
       {pathname === "/" ? (
         <Login onClick={handleAuth}>Login</Login>
       ) : (
-        <Input
-          value={searchValue}
-          onChange={handleChange}
-          className="nav__input"
-          type="text"
-          placeholder="검색해주세요"
-        ></Input>
+        <>
+          <Input
+            value={searchValue}
+            onChange={handleChange}
+            className="nav__input"
+            type="text"
+            placeholder="검색해주세요"
+          />
+          <SignOut>
+            <UserImg src={userData.photoURL} alt={userData.displayName} />
+            <DropDown>
+              <span>Sign Out</span>
+            </DropDown>
+          </SignOut>
+        </>
       )}
     </NavWrapper>
   );
 }
 
 export default Nav;
+
+const SignOut = styled.div``;
+
+const UserImg = styled.img``;
+
+const DropDown = styled.div``;
 
 const Login = styled.a`
   background-color: rgba(0, 0, 0, 0.6);
