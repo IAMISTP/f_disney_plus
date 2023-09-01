@@ -10,12 +10,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 function Nav() {
+  const initalUserData = localStorage.getItem("userData")
+    ? JSON.parse(localStorage.getItem("userData"))
+    : {};
   const [show, setShow] = useState(false);
   const { pathname } = useLocation();
   const [searchValue, setSearchValue] = useState("");
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(initalUserData);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +31,7 @@ function Nav() {
         navigate("/");
       }
     });
-  }, []);
+  }, [auth, pathname, navigate]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -53,6 +56,7 @@ function Nav() {
     signInWithPopup(auth, provider)
       .then((result) => {
         setUserData(result.user);
+        localStorage.setItem("userData", JSON.stringify(result.user));
       })
       .catch((error) => {
         console.log(error);
